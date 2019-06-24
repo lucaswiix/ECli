@@ -13,7 +13,7 @@ npm install
 ## Usage
 
 ```javascript
-cd ECli
+cd sfiha
 node index.js
 ```
 
