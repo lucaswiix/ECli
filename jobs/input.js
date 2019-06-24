@@ -39,7 +39,7 @@ function inputs(){
         arr.cart = howPeopleWant
         content.peoples.push(arr)
     }
-    console.log('Finished! You can see here. (or log in result.txt)')
+    console.log('Finished! You can see here. (or log in result.json)')
     console.log('___________')  
     var fullQuantity = 0;
    for (let index = 0; index < content.peoples.length; index++) {
@@ -69,6 +69,12 @@ function inputs(){
         console.log('______________')        
     });
 
+    var dictstring = JSON.stringify(content);
+    var fs = require('fs');
+    fs.writeFile('sfiha-' + getFormattedTime() + '.json', dictstring, function(err, result) {
+         if(err) console.log('error', err);
+    });
+
     console.log('\n')
     console.log('Finished!')
     console.log('\n')
@@ -83,6 +89,19 @@ function inputs(){
        }
        return total;
     }
+
+    function getFormattedTime() {
+        var today = new Date();
+        var y = today.getFullYear();
+        // JavaScript months are 0-based.
+        var m = today.getMonth() + 1;
+        var d = today.getDate();
+        var h = today.getHours();
+        var mi = today.getMinutes();
+        var s = today.getSeconds();
+        return y + "-" + m + "-" + d + "-" + h + "-" + mi + "-" + s;
+    }
+
 
     function sumAllPeopleCost(arr){
         var total =0;
@@ -125,7 +144,7 @@ function inputs(){
     var indexName = '';
     var found = false;
     var quantity = 0;
-    
+
         while(balance < productQuantity)
         {
             let b = productQuantity - balance;
